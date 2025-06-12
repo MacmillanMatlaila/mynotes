@@ -12,7 +12,7 @@ void main() {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const LoginView(),
+      home: const RegisterView(),
     ),
   );
 }
@@ -79,13 +79,23 @@ class _RegisterViewState extends State<RegisterView> {
                       final email = _email.text;
                       final password = _password.text;
 
-                      //Now use the option you chose in firebase Authentication
-                      final userCredential = await FirebaseAuth.instance
-                          .createUserWithEmailAndPassword(
-                            email: email,
-                            password: password,
-                          );
-                      print(userCredential);
+                      try {
+                        //Now use the option you chose in firebase Authentication
+                        final userCredential = await FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                              email: email,
+                              password: password,
+                            );
+                        print(userCredential);
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'weak-password') {
+                          print('Weak Password');
+                        } else if (e.code == 'email-already-in-use') {
+                          print('Email already in use');
+                        } else if (e.code == 'invalid-email') {
+                          print('Invalid Email');
+                        }
+                      }
                     },
                     child: const Text('Register'),
                   ),

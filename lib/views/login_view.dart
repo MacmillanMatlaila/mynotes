@@ -64,13 +64,23 @@ class _LoginViewState extends State<LoginView> {
                       final email = _email.text;
                       final password = _password.text;
 
+                      try {
+                        final userCredential = await FirebaseAuth.instance
+                            .signInWithEmailAndPassword(
+                              email: email,
+                              password: password,
+                            );
+                        print(userCredential);
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'user-not-found') {
+                          print('User not found');
+                        } else if (e.code == 'wrong-password') {
+                          print('Wrong Password');
+                          print(e.code);
+                        }
+                      }
+
                       //Now use the option you chose in firebase Authentication
-                      final userCredential = await FirebaseAuth.instance
-                          .signInWithEmailAndPassword(
-                            email: email,
-                            password: password,
-                          );
-                      print(userCredential);
                     },
                     child: const Text('Login'),
                   ),

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "685166268939",
+    "project_id": "noteworthy-za",
+    "storage_bucket": "noteworthy-za.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685166268939:android:48737b091c39650c58ed0e",
+        "android_client_info": {
+          "package_name": "com.macmillan.mynotes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWCrK4ByroljZvFA_zpiyPtB_-OVCMcuM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
